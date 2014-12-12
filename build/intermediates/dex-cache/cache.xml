@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Dev Tools\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-26bd41d3f10b72ca2a00034806b9e3997749ed7c.jar" />
+    </item>
+    <item
+        jar="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-5dc39716591be76a5d4cde4628f28cf07c910517.jar" />
+    </item>
+    <item
+        jar="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\zxing\1.5\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2aa015d05422639a5ff9c861488b56e447a77b4b">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-fb9db65248e86b835b571f2affb771864ac9c953.jar" />
+    </item>
+    <item
+        jar="C:\Users\joera_000\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.1.0\908e18674f895e3e1fa8f4a954b8c637a23d2801\core-3.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="908e18674f895e3e1fa8f4a954b8c637a23d2801">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\core-3.1.0-d8b9050ed666e43fc8a7efce6842497aaa2f8571.jar" />
+    </item>
+    <item
+        jar="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-7df3d47d84786e0c397bf1c5286c78b58b3e0da1.jar" />
+    </item>
+    <item
+        jar="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-4ecc97fde5347fccbc6c90fbdc7eb5d20acf6900.jar" />
+    </item>
+    <item
+        jar="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\core\1.5\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85fd787f604f8fc6564ff7d4cce05f6522f180ab">
+        <dex dex="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-a6664fc71692205cefaae2d96edb47045d193b37.jar" />
+    </item>
+
+</items>

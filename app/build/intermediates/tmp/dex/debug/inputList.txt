@@ -1,0 +1,8 @@
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\classes\debug
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-26bd41d3f10b72ca2a00034806b9e3997749ed7c.jar
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-fb9db65248e86b835b571f2affb771864ac9c953.jar
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-a6664fc71692205cefaae2d96edb47045d193b37.jar
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-7df3d47d84786e0c397bf1c5286c78b58b3e0da1.jar
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-4ecc97fde5347fccbc6c90fbdc7eb5d20acf6900.jar
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\core-3.1.0-d8b9050ed666e43fc8a7efce6842497aaa2f8571.jar
+C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\build\intermediates\pre-dexed\debug\classes-5dc39716591be76a5d4cde4628f28cf07c910517.jar

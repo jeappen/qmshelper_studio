@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 24.0.1">
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="This fragment inner class should be static (org.shaastra.qmshelper.EditProfile_old.DatePickerFragment)"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:
+*Every* fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" public class DatePickerFragment extends DialogFragment{"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\src\main\java\org\shaastra\qmshelper\EditProfile_old.java"
+            line="192"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="This fragment inner class should be static (org.shaastra.qmshelper.RegisteredUser.DatePickerFragment)"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:
+*Every* fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" public class DatePickerFragment extends DialogFragment{"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\joera_000\AndroidStudioProjects\QMSHelper\app\src\main\java\org\shaastra\qmshelper\RegisteredUser.java"
+            line="264"
+            column="15"/>
+    </issue>
+
+</issues>
