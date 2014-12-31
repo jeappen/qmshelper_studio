@@ -159,6 +159,8 @@ public class Database {
 		BufferedWriter bw = new BufferedWriter(fw);
 		int numEntries = data[0].length;
 		int numbCols = data.length;
+        numbCols=numbCols-1;
+
 		for (int i = 0; i < numEntries; i++) {
 			for (int j = 0; j < numbCols; j++) {
 				bw.write(data[j][i] + ",");

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array
+        name="questions">
+        <item>	Choice of merchandise	</item>
+        <item>	Rate the price of the T shirts	</item>
+        <item>	Rate the design of the T shirts	</item>
+        <item>	Overall ambience of the stalls	</item>
+        <item>		</item>
+        <item>	Were your event related queries answered satisfactorily in the Hospitality desk?	</item>
+        <item>	How was the crowd control at hospitality desk?	</item>
+        <item>	Clarity of announcements 	</item>
+        <item>	Were you able to locate direction for venues?	</item>
+        <item>	How do you rate the accommodation provided?	</item>
+        <item>	Clarity of information provided 	</item>
+        <item>	How comfortable do you rate the registration process?	</item>
+        <item>	Over all Shaastra experience	</item>
+        <item>		</item>
+        <item>	Rate the Website Design	</item>
+        <item>	How informative and eye-catching were the posters regarding various activities of Shaastra?	</item>
+        <item>	Experience of Night ambience and Tech ambience 	</item>
+        <item>	Rate the Shaastra teasers/videos	</item>
+        <item>	Overall ambience of Shaastra	</item>
+        <item>		</item>
+        <item>	How enriching, informative and relevant to the topic were the panel discussions according to you?	</item>
+        <item>	Was the time to transition from one panel discussion to other sufficient? 	</item>
+        <item>	How engaging were the filler events? (Psychometric tests, documentary )	</item>
+        <item>	Rate your overall experience of the confluence	</item>
+        <item>		</item>
+        <item>	1. How was the general conduct and organization of the lecture?	</item>
+        <item>	2. Did you have an overview of the sponsor’s activities?	</item>
+        <item>	3. Rate the lecture under the following heads:	</item>
+        <item>	 i) Clarity of ideas and informativeness	</item>
+        <item>	 ii) Duration	</item>
+        <item>	4. Did the lecture keep you engaged?	</item>
+        <item>	5. Overall event experience	</item>
+        <item>		</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. How would you rate the pricing of our Sponsorship Avenues?	</item>
+        <item>	3. Did the level of exposure, recognition and value received at the event match your expectations?	</item>
+        <item>	4. How would you rate the effectiveness of the following deliverables? (wherever applicable)	</item>
+        <item>	 i. Title Association	</item>
+        <item>	 ii. Lecture Slot	</item>
+        <item>	 iii. Stall	</item>
+        <item>	 iv. Branding and Visibility at Shows	</item>
+        <item>	 v. Branding and Visibility at one or more events	</item>
+        <item>	 vi. On Ground Publicity: Banners, Standees and merchandise	</item>
+        <item>	 vii. Banner and Profile on website	</item>
+        <item>	 viii. Web-based Publicity: Facebook page, Blog	</item>
+        <item>	 ix. Newspaper publications	</item>
+        <item>	5. How satisfied were you with your association with Shaastra?	</item>
+        <item>		</item>
+        <item>	Were you contacted well in advance	</item>
+        <item>	Was the lecture attended by the right audience	</item>
+        <item>	Audience response	</item>
+        <item>	Rate the General arrangements made for you	</item>
+        <item>	Shaastra Experience	</item>
+        <item>		</item>
+        <item>	Rate the system of dispatch of prize money.	</item>
+        <item>	How suitable is giving cheques for prize money?	</item>
+        <item>	How suitable would it be to give prize money through online transaction?	</item>
+        <item>	Rate the amount of prize money of the competition.	</item>
+        <item>	Arrangement at the PPM desk.	</item>
+        <item>		</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Did the quality of food served match your expectations?	</item>
+        <item>	3. How satisfied were you with our menu?	</item>
+        <item>	4. How would you rate affordability of our servings?	</item>
+        <item>	5. How satisfied were you with the quantity served for money paid? 	</item>
+        <item>	6. How comfortable was environment for eating?	</item>
+        <item>	7. Availability of miscellaneous requirements(like dustbins, napkins etc)  	</item>
+        <item>		</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Were all requirements available on time before event started?	</item>
+        <item>	3. How was the quality of the instruments provided?	</item>
+        <item>	4. Were those requirements in proper working conditions and user friendly?	</item>
+        <item>	5. How well informed were you about the facilities available?	</item>
+        <item>	6. How will you rate facilities overall during Shaastra 2015? 	</item>
+        <item>		</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Were vehicles available on time? 	</item>
+        <item>	3.  How comfortable was your journey? 	</item>
+        <item>	4.  How much affordable was the transportation facility? 	</item>
+        <item>	5. How well informed were you about the facilities available? 	</item>
+        <item>	6. How will you rate transportation overall in Shaastra 2015?	</item>
+        <item>		</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Did the quality of your stay meet your expectations?	</item>
+        <item>	3. How clear information you had about your event?	</item>
+        <item>	4. How was the timings of your food servings?	</item>
+        <item>	5. Were you given enough attention before and after the event? 	</item>
+
+    </string-array>
+</resources>

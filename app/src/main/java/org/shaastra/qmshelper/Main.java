@@ -13,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class Main extends Activity {
-	Button pbut,ebut;
+	Button pbut,ebut,fbut;
 	String user,pass;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class Main extends Activity {
 
 		pbut = (Button) findViewById(R.id.button1);
 		ebut= (Button) findViewById(R.id.button2);
+        fbut= (Button) findViewById(R.id.button3);
 		pbut.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -50,6 +51,17 @@ public class Main extends Activity {
 					}
 				});
 	
-		}
+
+        fbut.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View arg0) {
+            Intent intent = new Intent(Main.this, FeedbackMain.class);
+            intent.putExtra("user", user);
+            intent.putExtra("pass", pass);
+            startActivity(intent);
+        }
+    });
+
+}
 
 }

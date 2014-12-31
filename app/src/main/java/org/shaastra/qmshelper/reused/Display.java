@@ -75,13 +75,14 @@ public class Display extends Activity {
 		data = db.getData();
 		sendData = db.getDataToSend();
 		db.close();
-		for (int i = 0; i < data[0].length; i++) {
+        int length=data[0].length;
+		for (int i = 0; i <length; i++) {
 			/*
 			 * String row =data[0][i]; String userid= data[1][i]; String event
 			 * =data[2][i]; String sent =data[3][i];
 			 */
-			items.add(data[0][i] + "," + data[1][i] + "," + data[2][i] + ","
-					+ data[3][i]);
+			items.add(data[0][i] + "," + data[1][i] + "," + data[2][i]// + ","//+ data[3][i]
+            );
 		}
 		grid.setAdapter(new GridAdapter(items));
 		b.setVisibility(View.GONE);
@@ -273,7 +274,7 @@ public class Display extends Activity {
 	}
 
 	// Assume it's known
-	private static final int ROW_ITEMS = 4;
+	private static final int ROW_ITEMS = 3;
 
 	private static final class GridAdapter extends BaseAdapter {
 		final ArrayList<String> mItems;

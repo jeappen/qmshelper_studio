@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import android.text.Editable;
+import android.text.TextUtils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,20 +32,25 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import javax.xml.validation.Validator;
 
 /**
  * 
@@ -51,6 +60,7 @@ public class Register extends Activity implements OnClickListener {
 	String scanContent, scanFormat, result, resPage, discount, user, pass;
 	String[][] data = new String[3][];
 	Spinner spinner;
+    AutoCompleteTextView aut;
 	Button buttonScan, buttonEntry, sendTeam, buttonAbort,buttonFlush;
 	TextView formatTxt, contentTxt, tv1, tvr1, tvr2;
 	EditText et, etAdd;
@@ -66,6 +76,7 @@ public class Register extends Activity implements OnClickListener {
     int request_Code=1;
 
     Singleton app;
+    List<String> categories;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,6 +96,7 @@ public class Register extends Activity implements OnClickListener {
 		Log.i("regUser", user);
 		Log.i("regPass", pass);
 		spinner = (Spinner) findViewById(R.id.s1);
+        aut=(AutoCompleteTextView) findViewById(R.id.aut1);
 		buttonScan = (Button) findViewById(R.id.button1);
 		formatTxt = (TextView) findViewById(R.id.tvFor);
 		contentTxt = (TextView) findViewById(R.id.tvCon);
@@ -101,16 +113,66 @@ public class Register extends Activity implements OnClickListener {
 		eveDb = new EventDatabase(this);
 		eveDb.open();
 		data = eveDb.getData();
-		List<String> categories = new ArrayList<String>();
+		categories = new ArrayList<String>();
 		for (int i = 0; i < data[0].length; i++) {
 			categories.add(data[1][i]);
 		}
 		eveDb.close();
 
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, categories);
+				R.layout.dropdown, categories);
 		dataAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				.setDropDownViewResource(R.layout.dropdown);
+        aut.setAdapter(dataAdapter);
+        aut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View arg0) {
+                setIs_Team();
+                aut.showDropDown();
+            }
+        });
+        aut.addTextChangedListener(new TextWatcher(){
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                setIs_Team();
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                //setIs_Team();
+
+            }
+
+        });
+        aut.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("OnItemSelected", ">>" + position);
+
+                setIs_Team();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.e("OnNothingSelected", ">> nothing selected");
+
+            }
+        });
+
+        aut.setVisibility(View.VISIBLE);
+        spinner.setVisibility(View.GONE);
+
 		spinner.setAdapter(dataAdapter);
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
@@ -127,7 +189,7 @@ public class Register extends Activity implements OnClickListener {
 					sendTeam.setVisibility(View.VISIBLE);
 					sendTeam.setText("Send/save all members as a team");
 					buttonAbort.setVisibility(View.VISIBLE);
-					
+
 					//Only one/zero members, hence:
 					//sendTeam.setClickable(false);
 
@@ -149,9 +211,46 @@ public class Register extends Activity implements OnClickListener {
 		});
 	}
 
-	@SuppressLint("NewApi")
+    void setIs_Team(){
+        String event=aut.getText().toString();
+        int event_there=categories.indexOf(event);
+        //Log.d("in the setis_team method?","yep");
+        if(event_there!=-1) {
+            pos=event_there;
+            Is_Team = data[2][pos].equals("1");
+           // Log.d("event there?","yep");
+        }
+
+        if (Is_Team) {
+           // Log.d("isteam","yep");
+            sendTeam.setVisibility(View.VISIBLE);
+            sendTeam.setText("Send/save all members as a team");
+            buttonAbort.setVisibility(View.VISIBLE);
+
+            //Only one/zero members, hence:
+            //sendTeam.setClickable(false);
+
+        } else {
+            sendTeam.setVisibility(View.GONE);
+            buttonAbort.setVisibility(View.GONE);
+        }
+        tvr1.setText("");
+        tvr2.setText("");
+        formatTxt.setText("");
+        contentTxt.setText("");
+    }
+
+
+
+
+    @SuppressLint("NewApi")
 	@Override
 	public void onClick(View v) {
+
+        setIs_Team();
+
+
+
 		if (v.getId() == R.id.button1) {
             Intent intent = new Intent(getApplicationContext(), SimpleScannerActivity.class);
             startActivityForResult(intent, request_Code);
@@ -189,10 +288,21 @@ public class Register extends Activity implements OnClickListener {
 					Log.e("test", ">>" + scanContent);
 					scanDone = true;
 					scanFormat = "1";
-					tvr1.setText("Sending...");
+					tvr1.setText("Saving...");
 					contentTxt.setText("CONTENT: " + scanContent);
 					formatTxt.setText("");
-					sendData();
+                    String event=aut.getText().toString();
+                    int event_there=categories.indexOf(event);
+                    if(event_there!=-1) {
+                        pos=event_there;
+                        sendData();
+                    }
+                    else {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Please check if the event is there in the list", Toast.LENGTH_SHORT).show();
+                        tvr1.setText("ERR: event not in list");
+                    }
 				} else {
 					tvr1.setText("Empty Field");
 					Log.e("<--Emplty Field-->", "empty edit text");	
@@ -205,8 +315,19 @@ public class Register extends Activity implements OnClickListener {
 			scanDone = true;
 			scanFormat = "2";
 			if (scanContent != null && !scanContent.isEmpty() && scanContent.length()!=0) {
-				tvr1.setText("Sending...");
-				sendData();
+				tvr1.setText("Saving...");
+                String event=aut.getText().toString();
+                int event_there=categories.indexOf(event);
+                if(event_there!=-1) {
+                    pos=event_there;
+                    sendData();
+                }
+                else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Please check if the event is there in the list", Toast.LENGTH_SHORT).show();
+                    tvr1.setText("ERR: event not in list");
+                }
 				Log.v("scanContent is not empty", scanContent);
 			}
 			else {
@@ -252,24 +373,46 @@ public class Register extends Activity implements OnClickListener {
         startActivity(intent);
 
     }
-    public void GetBulkData(View v){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose from bulk scan data");
+    public void GetAllBulkData(View v){
+
+
         final String[] bulk=app.getBulk();
         if(bulk.length==0){
             Toast.makeText(getApplicationContext(), "First scan using bulk scan mode!", Toast.LENGTH_SHORT).show();
         }
         else{
+            String allbcode= TextUtils.join("/",bulk)+"/";
+            et.setText(allbcode);
+        }
+
+
+    }
+
+    public void GetBulkData(View v){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose from bulk scan data");
+
+        String[] bulkQ=app.getBulk();
+        List<String> bulkl = new ArrayList<String>(Arrays.asList(bulkQ));
+       // final String[] bulk=bulkA;
+        final String[] bulk = bulkl.toArray(new String[bulkl.size()]);
+        if(bulk.length==0){
+            Toast.makeText(getApplicationContext(), "First scan using bulk scan mode!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            final boolean[] used=app.getUsed();
+            for(int i=0;i<bulk.length;i++) {
+                bulk[i] = Integer.toString(i+1) + ". " + bulk[i];
+                if(used[i])
+                    bulk[i] = "✔ " + bulk[i];
+            }
             builder.setItems(bulk, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int item) {
-                    String bcode=bulk[item];
-
-                    int ind=bcode.indexOf("."),check=bcode.indexOf("✔");
-                    if(check==-1) {
-                        bulk[item] = "✔" + bulk[item];
-                        app.setBulk(bulk);
-                    }
+                    String bcode=new String(bulk[item]);
+                    int ind=bcode.indexOf(".");
+                    used[item]=true;
                     bcode=bcode.substring(ind+2);
                     et.setText(bcode);
                     Toast.makeText(getApplicationContext(),"Chose "+bcode, Toast.LENGTH_SHORT).show();
@@ -441,6 +584,7 @@ public class Register extends Activity implements OnClickListener {
 	}
 
 	private void sendData() {
+
 		Thread networkThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -462,13 +606,28 @@ public class Register extends Activity implements OnClickListener {
 					// If sending to server fails
 					else if (l == 1 && (!httpRes || !resPage.equals("OK"))) {
 						db.open();
-						boolean found = db.findEntry(scanContent, data[0][pos]);
-						Log.i("FOUND", "" + found);
-						if (!found) {
-							db.createEntry(scanContent, data[1][pos],
-									data[0][pos], 0);
-							Log.i("STORE", "DONE");
-						}
+                        if(!Is_Team){
+                            String[] bcodes=scanContent.split("/");
+                            for(int i=0;i<bcodes.length;i++){
+                                boolean found = db.findEntry(bcodes[i], data[0][pos]);
+                                Log.i("FOUND", "" + found);
+                                if (!found) {
+                                    db.createEntry(bcodes[i], data[1][pos],
+                                            data[0][pos], 0);
+                                    Log.i("STORE", "DONE");
+                                }
+                            }
+
+                        }
+                        else {
+                            boolean found = db.findEntry(scanContent, data[0][pos]);
+                            Log.i("FOUND", "" + found);
+                            if (!found) {
+                                db.createEntry(scanContent, data[1][pos],
+                                        data[0][pos], 0);
+                                Log.i("STORE", "DONE");
+                            }
+                        }
 						db.close();
 					}
 				} catch (Exception e) {

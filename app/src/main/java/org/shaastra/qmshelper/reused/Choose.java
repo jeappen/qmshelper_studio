@@ -35,6 +35,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -128,7 +130,19 @@ public class Choose extends ListActivity {
 //						break;
 				case 3:
 					//handler.sendEmptyMessage(3);
-					new getEvents().execute();
+                    ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
+                            .getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo activeNetworkInfo = connectivityManager
+                            .getActiveNetworkInfo();
+                    final boolean a = activeNetworkInfo != null && activeNetworkInfo.isConnected();
+					if(a){
+                        new getEvents().execute();
+                    } else {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "No internet connection. Check your connection and "
+                                        + "try again later", Toast.LENGTH_SHORT).show();
+                    }
 					
 					break;
 				case 4:

@@ -90,7 +90,7 @@ private int year, month, day,age;
 	      branch_data= new ArrayAdapter<String>(NewUser.this,android.R.layout.simple_spinner_item, branches);
 	      dateView.setText("DOB : --/--/----"); 
 	      //dateView.setText("DOB : " + day+"/"+(month+1)+"/"+year);
-	      gender="F";
+	      gender="M";
 	      accomodation="0";
 	      setTitle("New User");
 	      //showDate(year, month, day);
@@ -175,7 +175,8 @@ private int year, month, day,age;
 				
 			}
 		});
-accomRG.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        genderRG.check(R.id.Male);
+        accomRG.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -318,7 +319,7 @@ regbut.setOnClickListener(new View.OnClickListener() {
 		}
 		bcodeET.setText("");
 		branch_spinner.setSelection(0);
-		genderRG.check(R.id.Female);
+		genderRG.check(R.id.Male);
 		accomRG.check(R.id.notwanted);
 		emailET.setEnabled(true);
 		idTV.setText(getResources().getString(R.string.id_name)+" : "+getResources().getString(R.string.id_default));

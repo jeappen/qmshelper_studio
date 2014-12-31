@@ -7,4 +7,20 @@
 	<string name="id_name">User ID</string>
 	<string name="id_prefix"></string>
 	<string name="id_default">(make new account to get)</string>
+    <string-array
+        name="FeedbackCheckbox">
+        <item>Checkbox1</item>
+         <item>Checkbox2</item>
+         <item >Checkbox 3</item>
+        <item>Checkbox 4</item>
+    </string-array>
+    <string-array
+        name="FeedbackSpinner">
+        <item>Choice 1</item>
+         <item>Choice 2</item>
+         <item>Choice 3</item>
+        <item>Choice 4</item>
+        <item>Choice 5</item>
+        <item>Choice 6</item>
+    </string-array>
 </resources>

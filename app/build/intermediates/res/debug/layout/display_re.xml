@@ -34,7 +34,7 @@
     android:focusable="false"
     android:gravity="center"
     android:horizontalSpacing="5dp"
-    android:numColumns="4"
+    android:numColumns="3"
     android:stretchMode="columnWidth"
     android:verticalSpacing="5dp" />
 
