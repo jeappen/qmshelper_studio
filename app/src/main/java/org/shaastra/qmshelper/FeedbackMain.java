@@ -61,6 +61,8 @@ public class FeedbackMain extends ListActivity {
 	Context context;
 	JSONParser jsonParser=new JSONParser();
 	Singleton app;
+
+    String[] extra_depts;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,13 @@ public class FeedbackMain extends ListActivity {
 		app = (Singleton) getApplicationContext();
 		user = getIntent().getStringExtra("user");
 		pass = getIntent().getStringExtra("pass");
+        extra_depts=getResources().getStringArray(R.array.ExtraDept);
 		Log.i("chooseUser", user);
 		Log.i("choosePass", pass);
 
 		String[] choices = { "Get Feedback", //"Get list from server",
 				"Refresh Event List", "Show Feedback data", "Export to csv and send"//,"Send exported csv"
-				};
+				,"Delete Feedback Data database"};
 		setListAdapter(new ArrayAdapter<String>(FeedbackMain.this,
 				android.R.layout.simple_list_item_1, choices));
 		setContentView(R.layout.choose_re);
@@ -161,7 +164,7 @@ public class FeedbackMain extends ListActivity {
 					info.close();
 					break;
 				case 6:
-					
+					info.delete();
 					
 				}
 			/*}
@@ -213,10 +216,10 @@ public class FeedbackMain extends ListActivity {
 			final List<NameValuePair> paramse = new ArrayList<NameValuePair>();
 					String url = "api/mobile/events/";
 					JSONObject json = jsonParser.makeHttpRequest(url, "GET", paramse,app.getadmintoken() );
-					
-					try{
+            int n,last_id=0;
+            try{
 					JSONArray events=json.getJSONArray("data");
-					for(int n = 0; n < events.length(); n++)
+					for(n= 0; n < events.length(); n++)
 					{	String team="-1";
 					    JSONObject event = events.getJSONObject(n);
 					    Log.d("event",event.toString());
@@ -224,9 +227,20 @@ public class FeedbackMain extends ListActivity {
 					    	team="0";
 					    else
 					    	team="1";
-					    result=result+":"+event.getString("name")+":"+event.getString("id")+":"+team;
+
+                        String add="";
+                        if(!event.getString("name").equals("Startup Hive"))
+                        add=":"+event.getString("name")+":"+event.getString("id")+":"+team;
+                        last_id= Integer.valueOf(event.getString("id"));
+					    result=result+add;
 					    // do some stuff....
 					}
+                for(int k=0;k<extra_depts.length;k++){
+                    String add="";
+                    add=":"+extra_depts[k]+":"+String.valueOf(++last_id)+":"+"0";
+                    result=result+add;
+                }
+
 					}
 					catch(JSONException e){
 						;

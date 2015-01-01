@@ -2,6 +2,27 @@
 <resources>
     <!-- From: file:/C:/Users/joera_000/AndroidStudioProjects/QMSHelper/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string-array name="ExtraDept">
+        <item>	Design	</item>
+        <item>	Hospitality	</item>
+        <item>	Sales and Distribution	</item>
+        <item>	Prize and Prize money	</item>
+        <item>	Lecture Speakers	</item>
+        <item>	Sponsorship Lectures-participants	</item>
+        <item>	Sponsorship Company	</item>
+        <item>	Catering - Facilities</item>
+        <item>	General facilities	- Facilities</item>
+        <item>	Transportation	- Facilities</item>
+        <item>	VIP care	- Facilities</item>
+        <item>	Video Conference participant	</item>
+        <item>	Exhibition	</item>
+        <item>	Lectures participant	</item>
+      <!--  <item>	Events 	</item> -->
+        <item>	Shows	</item>
+        <item>	Startup Hive Bucket 1	</item>
+        <item>	Startup Hive Bucket 2	</item>
+
+    </string-array>
     <string-array name="FeedbackCheckbox">
         <item>Checkbox1</item>
          <item>Checkbox2</item>
@@ -15,6 +36,198 @@
         <item>Choice 4</item>
         <item>Choice 5</item>
         <item>Choice 6</item>
+    </string-array>
+    <string-array name="SpecialForm">
+        <item>	Design	</item>
+        <item>	Hospitality	</item>
+        <item>	Sales and Distribution	</item>
+        <item>	Prize and Prize money	</item>
+        <item>	Lecture Speakers	</item>
+        <item>	Sponsorship Lecture</item>
+        <item>Sponsorship Company</item>
+        <item>	Catering</item>
+        <item>	General facilities</item>
+        <item>	Transportation	</item>
+        <item>	VIP care	</item>
+        <item>	Video Conference participant	</item>
+        <item>	Exhibition	</item>
+        <item>	Lectures participant	</item>
+        <item> Workshop</item>
+        <item> Training</item>
+        <item> Gaming Zone</item>
+        <item> Entrepreneurship Confluence </item>
+        <!--  <item>	Events 	</item> -->
+        <item>	Shows	</item>
+        <item> Symposium </item>
+        <item>	Startup Hive Bucket 1	</item>
+        <item>	Startup Hive Bucket 2	</item>
+
+    </string-array>
+    <!-- From: file:/C:/Users/joera_000/AndroidStudioProjects/QMSHelper/app/src/main/res/values/questions.xml -->
+    <eat-comment/>
+    <string-array name="questions">
+        <item>	SALES AND DISTRIBUTION FEEDBACK	</item>
+        <item>	Choice of merchandise	</item>
+        <item>	Rate the price of the T shirts	</item>
+        <item>	Rate the design of the T shirts	</item>
+        <item>	Overall ambience of the stalls	</item>
+        <item>	HOSPITALITY FEEDBACK	</item>
+        <item>	Were your event related queries answered satisfactorily in the Hospitality desk?	</item>
+        <item>	How was the crowd control at hospitality desk?	</item>
+        <item>	Clarity of announcements 	</item>
+        <item>	Were you able to locate direction for venues?	</item>
+        <item>	How do you rate the accommodation provided?	</item>
+        <item>	Clarity of information provided 	</item>
+        <item>	How comfortable do you rate the registration process?	</item>
+        <item>	Over all Shaastra experience	</item>
+        <item>	DESIGN FEEDBACK FORM	</item>
+        <item>	Rate the Website Design	</item>
+        <item>	How informative and eye-catching were the posters regarding various activities of Shaastra?	</item>
+        <item>	Experience of Night ambience and Tech ambience 	</item>
+        <item>	Rate the Shaastra teasers/videos	</item>
+        <item>	Overall ambience of Shaastra	</item>
+        <item>	ENTREPRENEURSHIP CONFLUENCE FEEDBACK	</item>
+        <item>	How enriching, informative and relevant to the topic were the panel discussions according to you?	</item>
+        <item>	Was the time to transition from one panel discussion to other sufficient? 	</item>
+        <item>	How engaging were the filler events? (Psychometric tests, documentary )	</item>
+        <item>	Rate your overall experience of the confluence	</item>
+        <item>	Sponsorship Lecture  FEEDBACK	</item>
+        <item>	1. How was the general conduct and organization of the lecture?	</item>
+        <item>	2. Did you have an overview of the sponsor’s activities?	</item>
+        <item>	3. Rate the lecture under the following heads:	</item>
+        <item>" i) Clarity of ideas and informativeness	"</item>
+        <item>	 ii) Duration	</item>
+        <item>	4. Did the lecture keep you engaged?	</item>
+        <item>	5. Overall event experience	</item>
+        <item>	SPONSORSHIP COMPANY FEEDBACK	</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. How would you rate the pricing of our Sponsorship Avenues?	</item>
+        <item>	3. Did the level of exposure, recognition and value received at the event match your expectations?	</item>
+        <item>	4. How would you rate the effectiveness of the following deliverables? (wherever applicable)	</item>
+        <item>" i. Title Association"</item>
+        <item>	 ii. Lecture Slot	</item>
+        <item>	 iii. Stall	</item>
+        <item>	 iv. Branding and Visibility at Shows	</item>
+        <item>	 v. Branding and Visibility at one or more events	</item>
+        <item>	 vi. On Ground Publicity: Banners, Standees and merchandise	</item>
+        <item>	 vii. Banner and Profile on website	</item>
+        <item>	 viii. Web-based Publicity: Facebook page, Blog	</item>
+        <item>	 ix. Newspaper publications	</item>
+        <item>	5. How satisfied were you with your association with Shaastra?	</item>
+        <item>	LECTURE SPEAKERS FEEDBACK FORM	</item>
+        <item>	Were you contacted well in advance	</item>
+        <item>	Was the lecture attended by the right audience	</item>
+        <item>	Audience response	</item>
+        <item>	Rate the General arrangements made for you	</item>
+        <item>	Shaastra Experience	</item>
+        <item>	PRIZE AND PRIZE MONEY  FEEDBACK	</item>
+        <item>	Rate the system of dispatch of prize money.	</item>
+        <item>	How suitable is giving cheques for prize money?	</item>
+        <item>	How suitable would it be to give prize money through online transaction?	</item>
+        <item>	Rate the amount of prize money of the competition.	</item>
+        <item>	Arrangement at the PPM desk.	</item>
+        <item>	CATERING FEEDBACK	</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Did the quality of food served match your expectations?	</item>
+        <item>	3. How satisfied were you with our menu?	</item>
+        <item>	4. How would you rate affordability of our servings?	</item>
+        <item>	5. How satisfied were you with the quantity served for money paid? 	</item>
+        <item>	6. How comfortable was environment for eating?	</item>
+        <item>	7. Availability of miscellaneous requirements(like dustbins, napkins etc)  	</item>
+        <item>	GENERAL FACILITIES FEEDBACK	</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Were all requirements available on time before event started?	</item>
+        <item>	3. How was the quality of the instruments provided?	</item>
+        <item>	4. Were those requirements in proper working conditions and user friendly?	</item>
+        <item>	5. How well informed were you about the facilities available?	</item>
+        <item>	6. How will you rate facilities overall during Shaastra 2015? 	</item>
+        <item>	TRANSPORTATION FEEDBACK	</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Were vehicles available on time? 	</item>
+        <item>	3.  How comfortable was your journey? 	</item>
+        <item>	4.  How much affordable was the transportation facility? 	</item>
+        <item>	5. How well informed were you about the facilities available? 	</item>
+        <item>	6. How will you rate transportation overall in Shaastra 2015?	</item>
+        <item>	VIP CARE FEEDBACK	</item>
+        <item>	1. How would you rate your interaction with Shaastra coordinator?	</item>
+        <item>	2. Did the quality of your stay meet your expectations?	</item>
+        <item>	3. How clear information you had about your event?	</item>
+        <item>	4. How was the timings of your food servings?	</item>
+        <item>	5. Were you given enough attention before and after the event? 	</item>
+        <item>	Workshop or Training Participant FEEDBACK	</item>
+        <item>	How informative and interactive was the workshop?	</item>
+        <item>	Hands-on session	</item>
+        <item>	Individual Attention given	</item>
+        <item>	Learning experience	</item>
+        <item>	General Organization and conduct of the event	</item>
+        <item>	Gaming Zone FEEDBACK	</item>
+        <item>	Choice of games	</item>
+        <item>	Sufficiency of time	</item>
+        <item>	Quality of facilities	</item>
+        <item>	Overall experience of the zone	</item>
+        <item>	SHOWS FEEDBACK	</item>
+        <item>	1. How entertaining was the show?	</item>
+        <item>	2. How fascinating was the technology involved in the show?	</item>
+        <item>	3. Rate the arrangements made for the show (Crowd control/presentation/facilities) 	</item>
+        <item>	4. How would you merit the uniqueness of the show?	</item>
+        <item>	5. Overall event experience	</item>
+        <item>	Lectures PARTICIPANT FEEDBACK	</item>
+        <item>	Audibility of lecture and visibility of the presentation	</item>
+        <item>	Knowledge and communication of the speaker	</item>
+        <item>	Sufficiency of duration for lecture	</item>
+        <item>	Learning experience	</item>
+        <item>	General Organization and conduct of the event	</item>
+        <item>	Video conference PARTICIPANT FEEDBACK	</item>
+        <item>	The audibility of the lecture and visibility of the Videoconference	</item>
+        <item>	Your Interaction session with the speaker	</item>
+        <item>	The entertainment value of the Videoconference	</item>
+        <item>	Learning experience	</item>
+        <item>	Speaker`s presentation	</item>
+        <item>	General Organization and conduct of the event	</item>
+        <item>	Symposium FEEDBACK	</item>
+        <item>	How interesting was the theme of Symposium?	</item>
+        <item>	Usefulness of the field visit	</item>
+        <item>	How stimulating were the case studies and lectures?	</item>
+        <item>	Value addition from the Symposium experience	</item>
+        <item>	Exhibition FEEDBACK	</item>
+        <item>	Explanation given for the exhibition	</item>
+        <item>	Entertainment value of exhibition 	</item>
+        <item>	Learning experience	</item>
+        <item>	General Organization and conduct of the event	</item>
+        <item>	Judge FEEDBACK	</item>
+        <item>	Format of the event	</item>
+        <item>	How innovative were the participants?	</item>
+        <item>	How interesting was the problem statement?	</item>
+        <item>	General arrangements made for you	</item>
+        <item>	Overall event experience	</item>
+        <item>	Event FEEDBACK	</item>
+        <item>	Format of the event	</item>
+        <item>	Sufficiency of time provided	</item>
+        <item>	Difficulty of the Problem Statements/questions	</item>
+        <item>	Clarity of the instructions and rules conveyed	</item>
+        <item>	Overall event experience	</item>
+        <item>	Startup Hive Bucket 1 FEEDBACK	</item>
+        <item>	1. How would you rate the organisation of the Pitchfest?	</item>
+        <item>	2. Rate the lectures on the following parameters	</item>
+        <item>" i) Duration	"</item>
+        <item>	 ii) Relevance to topic of discussion	</item>
+        <item>	 iii) Informativeness	</item>
+        <item>	3. How effective was the book discussion in understanding the key traits needed for pursuing a startup?	</item>
+        <item>	4. How was your overall experience of the Startup Hive?	</item>
+        <item>	Startup Hive Bucket 2 FEEDBACK	</item>
+        <item>	1. How enriching and introspective was the Pitchfest for you?	</item>
+        <item>	2. Rate the lectures on the following parameters	</item>
+        <item>" i) Duration "</item>
+        <item>	 ii) Relevance to topic of discussion	</item>
+        <item>	 iii) Informativeness	</item>
+        <item>	3. How was your overall experience of the Startup Hive?	</item>
+
+    </string-array>
+    <!-- From: file:/C:/Users/joera_000/AndroidStudioProjects/QMSHelper/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string-array name="skipevent">
+        <item>Wright</item>
+        <item>Circuit</item>
     </string-array>
     <!-- From: file:/C:/Users/joera_000/AndroidStudioProjects/QMSHelper/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>

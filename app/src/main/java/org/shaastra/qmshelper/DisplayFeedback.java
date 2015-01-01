@@ -1,10 +1,12 @@
 package org.shaastra.qmshelper;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -61,7 +66,7 @@ public class DisplayFeedback extends Activity {
 		pass = getIntent().getStringExtra("pass");
 		Log.i("disUser", user);
 		Log.i("disPass", pass);
-		setContentView(R.layout.display_feedback);
+		setContentView(R.layout.feedback_table);
 		b = (Button) findViewById(R.id.b1);
 		tv = (TextView) findViewById(R.id.tv1);
 		final GridView grid = (GridView) findViewById(R.id.gridview);
@@ -73,16 +78,60 @@ public class DisplayFeedback extends Activity {
 		data = db.getData();
 		//sendData = db.getDataToSend();
 		db.close();
+
+        TableLayout table = (TableLayout) findViewById(R.id.tlGridTable);
         int length=data[0].length;
 		for (int i = 0; i <length; i++) {
 			/*
 			 * String row =data[0][i]; String userid= data[1][i]; String event
 			 * =data[2][i]; String sent =data[3][i];
 			 */
+
+            TableRow row=new TableRow(this);
+
+            row.setGravity(Gravity.CENTER);
+            //double debt = debtList.get(i);
+            //double fee = feeList.get(i);
+            TextView tv1=new TextView(this);TextView tv2=new TextView(this); TextView tv3=new TextView(this);
+            TextView tv4=new TextView(this);
+            TextView tv5=new TextView(this);
+            TextView[] tv=new TextView[15];
+            for (int k=0; k<15; ++k)
+
+            {
+                tv[k] = new TextView(this);
+
+            }
+            tv1.setTextSize(15);
+            tv2.setTextSize(15);
+            tv3.setTextSize(15);
+            tv4.setTextSize(15);
+            tv5.setTextSize(15);
+
+            // tv.setTextAppearance(getApplicationContext(),android.at);
+            String part1="",part2="";
+            tv1.setText(" "+data[0][i]);
+            tv2.setText(" "+data[2][i]);
+            tv3.setText(" "+data[3][i]);
+            tv3.setLayoutParams(new TableRow.LayoutParams(300 , TableRow.LayoutParams.WRAP_CONTENT)); // Here you can set weight to your TextView.
+
+            row.addView(tv1);
+            row.addView(tv2);
+            row.addView(tv3);
+            for(int j=4;j<data.length-1;j++) {
+                tv[j - 4].setText(" " + data[j][i]);
+                row.addView(tv[j-4]);
+            }
+            tv4.setText(" "+part2);
+            tv5.setText(" "+data[data.length-1][i]);
+
+            row.addView(tv4);
+            row.addView(tv5);
+            table.addView(row);
 			items.add(data[0][i] + "," + data[1][i] + "," + data[2][i] + ","+ data[3][i]+ ","+ data[4][i]+ ","+ data[5][i]+ ","+ data[6][i]
             );
 		}
-		grid.setAdapter(new GridAdapter(items));
+		//grid.setAdapter(new GridAdapter(items));
 
 		/*b.setOnClickListener(new OnClickListener() {
 			@Override
@@ -187,7 +236,7 @@ public class DisplayFeedback extends Activity {
 		Database info = new Database(this);
 		info.open();
 		count = info.getCount();
-		tv.setText("No of entries to be sent:" + count);
+//		tv.setText("No of entries to be sent:" + count);
 		info.close();
 	}
 
@@ -197,56 +246,6 @@ public class DisplayFeedback extends Activity {
 		if (progressBar != null) {
 			progressBar.dismiss();
 			progressBar = null;
-		}
-	}
-
-	public void postData(String userid, String eventid)
-			throws InterruptedException {
-		// Create a new HttpClient and Post Header
-		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://erp.saarang.org/mobile/barcode/");
-		try {
-			// info.open();
-			// sendData=info.getDataToSend();
-			// info.close();
-			// for(int i=0;i<sendData[0].length;i++){
-			// info.open();
-			// int count= info.getCount();
-			// tv.setText("No of entries to be sent:"+count);
-			// info.close();
-			Log.i("Inside postData", "reached");
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			nameValuePairs.add(new BasicNameValuePair("user", user));
-			nameValuePairs.add(new BasicNameValuePair("pass", pass));
-			nameValuePairs.add(new BasicNameValuePair("userid", userid));
-			nameValuePairs.add(new BasicNameValuePair("actionType", String
-					.valueOf(1)));
-			nameValuePairs.add(new BasicNameValuePair("eventid", eventid));
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			// Execute HTTP Post Request
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-			InputStream is = entity.getContent();
-			result = convertStreamToString(is);
-			httpRes = true;
-			/*
-			 * db.open(); db.updateEntry(sendData[1][i],
-			 * Integer.parseInt(sendData[0][i]), 1); Log.i("here", "updated");
-			 * if(httpRes&&resPage.equals("OK")&&result.charAt(0)=='R'){
-			 * db.open(); db.createEntry(scanContent, data[1][pos],
-			 * Integer.parseInt(data[0][pos]), 1); Log.i("STORE", "DONE");
-			 * db.close(); } db.close();
-			 */
-			Log.i("RESULT", result);
-			resPage = response.getStatusLine().getReasonPhrase();
-			Log.i("httpsRes true", "reached");
-			Log.i("Page", response.getStatusLine().getReasonPhrase());
-			// httpRes=false;
-			// }
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 

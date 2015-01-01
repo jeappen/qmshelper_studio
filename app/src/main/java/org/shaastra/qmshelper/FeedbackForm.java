@@ -4,19 +4,25 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -71,9 +77,10 @@ public class FeedbackForm extends Activity implements OnClickListener {
 	TextView formatTxt, contentTxt, tv1, tvr1, tvr2;
 	EditText comments, etAdd;
 	int pos;
+    int numrb;
     float rating;
 	long l;
-	String[] checkboxStrings,choiceStrings,questions;
+	String[] checkboxStrings,choiceStrings,questions,selectedquestions,specialform,skipevent;
 	FeedbackDatabase db;
 	EventDatabase eveDb;
 	StringBuilder team = new StringBuilder();
@@ -85,7 +92,7 @@ public class FeedbackForm extends Activity implements OnClickListener {
     Resources res;
     List<String> categories;
 
-    LinearLayout checkboxLayout;
+    LinearLayout questionsLayout;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -94,11 +101,15 @@ public class FeedbackForm extends Activity implements OnClickListener {
         app = (Singleton) getApplicationContext();
         pos = 0;
         uid=Secure.getString(
-                getApplication().getContentResolver(), Secure.ANDROID_ID);;
+                getApplication().getContentResolver(), Secure.ANDROID_ID);
+        userid=uid;
         res = getResources();
         checkboxStrings = res.getStringArray(R.array.FeedbackCheckbox);
         choiceStrings = res.getStringArray(R.array.FeedbackSpinner);
         questions=res.getStringArray(R.array.questions);
+        specialform=res.getStringArray(R.array.SpecialForm);
+        skipevent=res.getStringArray(R.array.skipevent);
+
 
         l = getIntent().getLongExtra("position", 0);
         setContentView(R.layout.feedbackform);
@@ -106,7 +117,6 @@ public class FeedbackForm extends Activity implements OnClickListener {
         buttonEntry = (Button) findViewById(R.id.submit_feedback);
         ratingbar=(RatingBar)findViewById(R.id.ratingBar);
 
-        ratingbar.setStepSize(1);
 
         buttonEntry.setOnClickListener(this);
         //buttonEntry.setText("Add Entry");
@@ -116,7 +126,7 @@ public class FeedbackForm extends Activity implements OnClickListener {
         Log.i("regPass", pass);
         spinner = (Spinner) findViewById(R.id.feedback_spinner);
         aut = (AutoCompleteTextView) findViewById(R.id.aut1);
-        checkboxLayout=(LinearLayout)findViewById(R.id.checkbox_main_layout);
+        questionsLayout=(LinearLayout)findViewById(R.id.questions_layout);
 
         formatTxt = (TextView) findViewById(R.id.tvFor);
         contentTxt = (TextView) findViewById(R.id.tvCon);
@@ -194,26 +204,80 @@ public class FeedbackForm extends Activity implements OnClickListener {
 
         aut.setVisibility(View.VISIBLE);
 
-        int i=0;
-        for (String a : checkboxStrings) {
-            CheckBox c=new CheckBox(getApplication());
-            c.setText(a);
-            c.setTextColor(Color.BLACK);
-            c.setId(i);
-            checkboxLayout.addView(c,i);
-            i++;
-        }
+
       //  spinner.setVisibility(View.GONE);
 
+    }
+    private void hideKeyboard() {
+        // Check if no view has focus:
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
     public void chooseQuestions(){
 
         String event=aut.getText().toString();
+        ArrayList<String> qList = new ArrayList<String>();
         int event_there=categories.indexOf(event);
+        boolean flag=false;
         //Log.d("in the setis_team method?","yep");
         if(event_there!=-1) {
+            questionsLayout.removeViews (0, questionsLayout.getChildCount());
             pos=event_there;
+            hideKeyboard();
+            int gen_id=0,rb_id=0;
+            String tag="event";
+            boolean boolskipevent=false;
+            for(String a :skipevent)
+             if(event.contains(a))
+                 boolskipevent=true;
+
+            for(String a : specialform){
+                if(event.toLowerCase().contains(a.toLowerCase()) && !boolskipevent)
+                    tag=a;
+            }
+            for(String q : questions){
+                if(q.contains("FEEDBACK"))
+                    flag=false;
+                if(flag)
+                    qList.add(q);
+                if(q.toLowerCase().contains(tag.toLowerCase()) && q.contains("FEEDBACK") )
+                    flag=true;
+
+            }
+
+
+
+            for (String a : qList) {
+                TextView t =new TextView(getApplicationContext());
+                t.setText(a);
+                t.setTextColor(Color.BLACK);
+                questionsLayout.addView(t,gen_id++);
+                boolean subsect =false;
+                if(qList.indexOf(a)!=(qList.size()-1))
+                    subsect=(qList.get(qList.indexOf(a)+1).contains(" i.") || qList.get(qList.indexOf(a)+1).contains(" i)"));
+                if(subsect) {
+
+                    Log.d("much pain","such code");
+                }
+                else{
+                    RatingBar c=new RatingBar(getApplicationContext(), null, android.R.attr.ratingBarStyle);
+                    LinearLayout.LayoutParams ll=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    ll.gravity = Gravity.CENTER;
+                            c.setLayoutParams(ll);
+                    LayerDrawable stars = (LayerDrawable) c.getProgressDrawable();
+                    stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+                    c.setNumStars(5);
+                    c.setStepSize(1);
+                    c.setId(rb_id++);
+
+                    questionsLayout.addView(c,gen_id++);
+                }
+            }
+            numrb=rb_id;
         }
 
 
@@ -320,7 +384,9 @@ public class FeedbackForm extends Activity implements OnClickListener {
 		}*/
 		else if (v.getId() == R.id.clear_feedback) {
 			comments.setText("");
-            ratingbar.setRating(0);
+            aut.setText("");
+            numrb=0;
+            questionsLayout.removeViews (0, questionsLayout.getChildCount());
 
 		}
 	}
@@ -412,25 +478,28 @@ public class FeedbackForm extends Activity implements OnClickListener {
 	}
 
     private void saveData(){
-        int choices = checkboxStrings.length;
+       // int choices = checkboxStrings.length;
         String checkString="";
-        for(int i=0;i<choices;i++) {
-           CheckBox c =(CheckBox)findViewById(i);
-           if(c.isChecked())
-               checkString=checkString+"/"+String.valueOf(i+1);
+        int[] q=new int[15];
+        for(int i=0;i<numrb;i++) {
+           RatingBar c =(RatingBar)findViewById(i);
+           float rating =c.getRating();
+            q[i]=(int) rating;
+            Log.d("rating"+String.valueOf(i),String.valueOf(rating));
         }
+        for(int i=numrb;i<15;i++)
+            q[i]=-1;
         if(!checkString.isEmpty())
         checkString=checkString.substring(1);
         else
             checkString="0";
-
-        rating=ratingbar.getRating();
-
+        String sent="no";
+       Log.d("info",checkString);
 
 
         db.open();
         db.createEntry(userid, data[1][pos],
-                data[0][pos], String.valueOf(rating),comments.getText().toString(),checkString,spinner.getSelectedItemPosition());
+                data[0][pos],q,comments.getText().toString(),sent);
         Log.i("STORE", "DONE");
         Toast.makeText(
                 getApplicationContext(),

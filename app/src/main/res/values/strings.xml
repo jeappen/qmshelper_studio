@@ -23,4 +23,58 @@
         <item>Choice 5</item>
         <item>Choice 6</item>
     </string-array>
+    <string-array
+        name="ExtraDept">
+        <item>	Design	</item>
+        <item>	Hospitality	</item>
+        <item>	Sales and Distribution	</item>
+        <item>	Prize and Prize money	</item>
+        <item>	Lecture Speakers	</item>
+        <item>	Sponsorship Lectures-participants	</item>
+        <item>	Sponsorship Company	</item>
+        <item>	Catering - Facilities</item>
+        <item>	General facilities	- Facilities</item>
+        <item>	Transportation	- Facilities</item>
+        <item>	VIP care	- Facilities</item>
+        <item>	Video Conference participant	</item>
+        <item>	Exhibition	</item>
+        <item>	Lectures participant	</item>
+      <!--  <item>	Events 	</item> -->
+        <item>	Shows	</item>
+        <item>	Startup Hive Bucket 1	</item>
+        <item>	Startup Hive Bucket 2	</item>
+
+    </string-array>
+    <string-array
+        name="skipevent">
+        <item>Wright</item>
+        <item>Circuit</item>
+    </string-array>
+    <string-array
+        name="SpecialForm">
+        <item>	Design	</item>
+        <item>	Hospitality	</item>
+        <item>	Sales and Distribution	</item>
+        <item>	Prize and Prize money	</item>
+        <item>	Lecture Speakers	</item>
+        <item>	Sponsorship Lecture</item>
+        <item>Sponsorship Company</item>
+        <item>	Catering</item>
+        <item>	General facilities</item>
+        <item>	Transportation	</item>
+        <item>	VIP care	</item>
+        <item>	Video Conference participant	</item>
+        <item>	Exhibition	</item>
+        <item>	Lectures participant	</item>
+        <item> Workshop</item>
+        <item> Training</item>
+        <item> Gaming Zone</item>
+        <item> Entrepreneurship Confluence </item>
+        <!--  <item>	Events 	</item> -->
+        <item>	Shows	</item>
+        <item> Symposium </item>
+        <item>	Startup Hive Bucket 1	</item>
+        <item>	Startup Hive Bucket 2	</item>
+
+    </string-array>
 </resources>
