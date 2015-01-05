@@ -2,6 +2,7 @@ package org.shaastra.qmshelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -24,13 +25,14 @@ public class FeedbackDatabase {
     public static final String KEY_RATING = "rating";
     public static final String KEY_COMMENT = "comments";// ho
     public static final String KEY_SENT = "sent";
-    public static final String[] KEY_Q = "i\tii\tiii\tiv\tv\tvi\tvii\tviii\tix\tx\txi\txii\txiii\txiv\txv".split("\t");//"'Q1'\t'Q2'\t'Q3'\t'Q4'\t'Q5'\t'Q6'\t'Q7'\t'Q8'\t'Q9'\t'Q10'\t'Q11'\t'Q12'\t'Q13'\t'Q14'\t'Q15'".split("\t");
+    public static final String[] KEY_Q = "Q1\tQ2\tQ3\tQ4\tQ5\tQ6\tQ7\tQ8\tQ9\tQ10\tQ11\tQ12\tQ13\tQ14\tQ15".split("\t");//"i\tii\tiii\tiv\tv\tvi\tvii\tviii\tix\tx\txi\txii\txiii\txiv\txv".split("\t");//"'Q1'\t'Q2'\t'Q3'\t'Q4'\t'Q5'\t'Q6'\t'Q7'\t'Q8'\t'Q9'\t'Q10'\t'Q11'\t'Q12'\t'Q13'\t'Q14'\t'Q15'".split("\t");
     public static final String KEY_CHOICE = "choice";
 
 	private static final String DATABASE_NAME = "Feedback";
 	private static final String DATABASE_TABLE = "feedbackTable";
 	private static final int DATABASE_VERSION = 1;
 
+    private static String savelocation ="",backupsavelocation="";
 	private Data myData;
 	private final Context myContext;
 	private SQLiteDatabase myDatabase;
@@ -88,13 +90,23 @@ public class FeedbackDatabase {
 			onCreate(db);
 		}
 	}
+    public void makeSent(){
+        myData = new Data(myContext);
+        myDatabase = myData.getWritableDatabase();
+        myDatabase.execSQL("UPDATE "+DATABASE_TABLE+" SET "+KEY_SENT+" = \'yes\' WHERE "+KEY_ROWID + "!= 0");
+    }
     public void delete(){
         myData = new Data(myContext);
         myDatabase = myData.getWritableDatabase();
       myDatabase.delete(DATABASE_TABLE, KEY_ROWID + "!="+0, null);
     }
 	public FeedbackDatabase(Context c){
-		myContext = c;
+
+        Resources res = c.getResources();
+        savelocation=""+res.getString(R.string.feedback_csv);
+        backupsavelocation=""+res.getString(R.string.feedback_backup_csv);
+
+        myContext = c;
 	}
 	public FeedbackDatabase open(){
 		myData = new Data(myContext);
@@ -134,10 +146,10 @@ public class FeedbackDatabase {
 		int count=0;
 		int i=0;
 		String[] columns = concat(new String[]{KEY_ROWID,KEY_USERID,KEY_EVENT,KEY_EVENTID,KEY_COMMENT,KEY_SENT},KEY_Q);
-        Log.d("test",TextUtils.join(",,,",concat(new String[]{KEY_ROWID,KEY_USERID,KEY_EVENT,KEY_EVENTID,KEY_COMMENT,KEY_SENT},KEY_Q)));
+       // Log.d("test",TextUtils.join(",,,",concat(new String[]{KEY_ROWID,KEY_USERID,KEY_EVENT,KEY_EVENTID,KEY_COMMENT,KEY_SENT},KEY_Q)));
 		Cursor c = myDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
 		int userid = c.getColumnIndex(KEY_USERID);
-        Log.d("colid",String.valueOf(userid));
+        //Log.d("colid",String.valueOf(userid));
 		int event = c.getColumnIndex(KEY_EVENT);
 		int row = c.getColumnIndex(KEY_ROWID);
         int[] q=new int[KEY_Q.length];
@@ -146,11 +158,11 @@ public class FeedbackDatabase {
             q[j] = c.getColumnIndex(KEY_Q[j]);
             dbg=dbg+","+String.valueOf(q[i]);
         }
-        Log.d("dbg getdata",dbg);
+        //Log.d("dbg getdata",dbg);
         int comment = c.getColumnIndex(KEY_COMMENT);
         int sent = c.getColumnIndex(KEY_SENT);
 
-        Log.d("colind",String.valueOf(sent));
+       // Log.d("colind",String.valueOf(sent));
       //  int choice = c.getColumnIndex(KEY_CHOICE);
 
 		//int sent = c.getColumnIndex(KEY_SENT);
@@ -160,6 +172,9 @@ public class FeedbackDatabase {
 		}
 		String[][] data = new String[20][count];
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
+                if(c.getString(row).equals("0"))
+                    data[0][i] = "#";
+                else
 				data[0][i] = c.getString(row);
 				data[1][i] = c.getString(userid);
 				data[2][i] = c.getString(event);
@@ -168,10 +183,10 @@ public class FeedbackDatabase {
             int j;
             for(j=0;j<KEY_Q.length;j++) {
                 if(c.getInt(q[j])==-2)
-                    data[j+4][i] = "Q"+String.valueOf(j);
+                    data[j+4][i] = "Q"+String.valueOf(j+1);
                 else
                     data[j+4][i] =String.valueOf(c.getInt(q[j]));
-                Log.d("dbgQ",String.valueOf(c.getInt(q[j]))+"index"+String.valueOf((q[j])));
+                //Log.d("dbgQ",String.valueOf(c.getInt(q[j]))+"index"+String.valueOf((q[j])));
 
             }
 
@@ -223,16 +238,21 @@ public class FeedbackDatabase {
 	public void close(){
 		myData.close();
 	}
-	public void dbToCsv() throws IOException {
+	public void dbToCsv(boolean backup) throws IOException {
 		String[][] data = getData();
-		File file = new File("/sdcard/data.csv");
+		File file;
+        if(backup)
+
+            file= new File(backupsavelocation);
+        else
+        file= new File(savelocation);
 		// if file doesnt exists, then create it
 		file.createNewFile();
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
 		int numEntries = data[0].length;
 		int numbCols = data.length;
-        //numbCols=numbCols-1;
+        numbCols=numbCols-1;
 
 		for (int i = 0; i < numEntries; i++) {
 			for (int j = 0; j < numbCols; j++) {

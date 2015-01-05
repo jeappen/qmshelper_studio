@@ -34,6 +34,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -62,6 +63,11 @@ public class Choose extends ListActivity {
 	Context context;
 	JSONParser jsonParser=new JSONParser();
 	Singleton app;
+
+    String savelocation;
+
+
+    String[] extra_depts;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,10 @@ public class Choose extends ListActivity {
 		app = (Singleton) getApplicationContext();
 		user = getIntent().getStringExtra("user");
 		pass = getIntent().getStringExtra("pass");
-		Log.i("chooseUser", user);
+        Resources res=getResources();
+        extra_depts=res.getStringArray(R.array.ExtraDept);
+        savelocation=res.getString(R.string.event_csv);
+        Log.i("chooseUser", user);
 		Log.i("choosePass", pass);
 
 		String[] choices = { "Scan and Register", //"Get list from server",
@@ -171,7 +180,7 @@ public class Choose extends ListActivity {
 	}
 	public void sendcsv(){
 		
-		File file = new File("/sdcard/data.csv");
+		File file = new File(savelocation);
 		if(file.exists() && file.length()>24){
 		String filelocation = "/mnt/sdcard/data.csv";
 		Intent sharingIntent = new Intent(Intent.ACTION_SEND);
@@ -211,6 +220,7 @@ public class Choose extends ListActivity {
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			Log.d("milestone02","got here");
+            int last_id=0;
 			final List<NameValuePair> paramse = new ArrayList<NameValuePair>();
 					String url = "api/mobile/events/";
 					JSONObject json = jsonParser.makeHttpRequest(url, "GET", paramse,app.getadmintoken() );
@@ -224,15 +234,24 @@ public class Choose extends ListActivity {
 					    if(event.getString("team_size_max").equals("1"))
 					    	team="0";
 					    else
-					    	team="1";
-					    result=result+":"+event.getString("name")+":"+event.getString("id")+":"+team;
-					    // do some stuff....
-					}
-					}
-					catch(JSONException e){
-						;
-					}
-					Log.d("events",result);
+					    	team="1";String add="";
+                        if(!event.getString("name").equals("Startup Hive"))
+                            add=":"+event.getString("name")+":"+event.getString("id")+":"+team;
+                        last_id= Integer.valueOf(event.getString("id"));
+                        result=result+add;
+                        // do some stuff....
+                    }
+                        for(int k=0;k<extra_depts.length;k++){
+                            String add="";
+                            add=":"+extra_depts[k]+":"+String.valueOf(++last_id)+":"+"0";
+                            result=result+add;
+                        }
+
+                    }
+                    catch(JSONException e){
+                        ;
+                    }
+            Log.d("events",result);
 	
 					
 			return null;

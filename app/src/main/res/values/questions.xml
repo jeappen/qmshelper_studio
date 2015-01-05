@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<!-- weird way of mapping questions to topics...-->
     <string-array
         name="questions">
         <item>	SALES AND DISTRIBUTION FEEDBACK	</item>
@@ -28,7 +28,7 @@
         <item>	Was the time to transition from one panel discussion to other sufficient? 	</item>
         <item>	How engaging were the filler events? (Psychometric tests, documentary )	</item>
         <item>	Rate your overall experience of the confluence	</item>
-        <item>	Sponsorship Lecture  FEEDBACK	</item>
+        <item>	Sponsorship Lec  FEEDBACK	</item>
         <item>	1. How was the general conduct and organization of the lecture?	</item>
         <item>	2. Did you have an overview of the sponsor’s activities?	</item>
         <item>	3. Rate the lecture under the following heads:	</item>
@@ -51,7 +51,7 @@
         <item>	 viii. Web-based Publicity: Facebook page, Blog	</item>
         <item>	 ix. Newspaper publications	</item>
         <item>	5. How satisfied were you with your association with Shaastra?	</item>
-        <item>	LECTURE SPEAKERS FEEDBACK FORM	</item>
+        <item>	LEC SPEAKERS FEEDBACK FORM	</item>
         <item>	Were you contacted well in advance	</item>
         <item>	Was the lecture attended by the right audience	</item>
         <item>	Audience response	</item>
@@ -91,7 +91,7 @@
         <item>	3. How clear information you had about your event?	</item>
         <item>	4. How was the timings of your food servings?	</item>
         <item>	5. Were you given enough attention before and after the event? 	</item>
-        <item>	Workshop or Training Participant FEEDBACK	</item>
+        <item>	Workshop or Training Participant Simulation Analysis FEEDBACK	</item>
         <item>	How informative and interactive was the workshop?	</item>
         <item>	Hands-on session	</item>
         <item>	Individual Attention given	</item>

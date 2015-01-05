@@ -383,13 +383,24 @@ public class FeedbackForm extends Activity implements OnClickListener {
 			contentTxt.setText(team);
 		}*/
 		else if (v.getId() == R.id.clear_feedback) {
-			comments.setText("");
-            aut.setText("");
-            numrb=0;
-            questionsLayout.removeViews (0, questionsLayout.getChildCount());
-
+            ClearFeedback();
 		}
 	}
+    public void ClearFeedback(){
+
+        comments.setText("");
+        aut.setText("");
+        numrb=0;
+        questionsLayout.removeViews (0, questionsLayout.getChildCount());
+    }
+    public void NextFeedback(){
+
+        comments.setText("");
+        for(int i=0;i<numrb;i++) {
+            RatingBar r = (RatingBar) findViewById(i);
+            r.setRating(0);
+        }
+    }
     public void Scan(View v){
         Intent intent = new Intent(getApplicationContext(), SimpleScannerActivity.class);
         startActivityForResult(intent, request_Code);
@@ -505,6 +516,7 @@ public class FeedbackForm extends Activity implements OnClickListener {
                 getApplicationContext(),
                 "Feedback Stored!\nThank you.", Toast.LENGTH_LONG).show();
         db.close();
+        NextFeedback();
     }
 /*
 	private void sendData() {

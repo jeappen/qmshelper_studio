@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -92,44 +93,31 @@ public class DisplayFeedback extends Activity {
             row.setGravity(Gravity.CENTER);
             //double debt = debtList.get(i);
             //double fee = feeList.get(i);
-            TextView tv1=new TextView(this);TextView tv2=new TextView(this); TextView tv3=new TextView(this);
-            TextView tv4=new TextView(this);
-            TextView tv5=new TextView(this);
-            TextView[] tv=new TextView[15];
-            for (int k=0; k<15; ++k)
+            TextView[] tv=new TextView[data.length];
+            for (int k=0; k<data.length; ++k)
 
             {
                 tv[k] = new TextView(this);
+                tv[k].setTextSize(15);
 
             }
-            tv1.setTextSize(15);
-            tv2.setTextSize(15);
-            tv3.setTextSize(15);
-            tv4.setTextSize(15);
-            tv5.setTextSize(15);
-
             // tv.setTextAppearance(getApplicationContext(),android.at);
-            String part1="",part2="";
-            tv1.setText(" "+data[0][i]);
-            tv2.setText(" "+data[2][i]);
-            tv3.setText(" "+data[3][i]);
-            tv3.setLayoutParams(new TableRow.LayoutParams(300 , TableRow.LayoutParams.WRAP_CONTENT)); // Here you can set weight to your TextView.
 
-            row.addView(tv1);
-            row.addView(tv2);
-            row.addView(tv3);
-            for(int j=4;j<data.length-1;j++) {
-                tv[j - 4].setText(" " + data[j][i]);
-                row.addView(tv[j-4]);
+            for(int j=0;j<data.length;j++) {
+                if(j==2 || j==3)
+                    tv[j].setLayoutParams(new TableRow.LayoutParams(200 , TableRow.LayoutParams.WRAP_CONTENT));
+                if(j!=1) {
+                    if(i==0)
+                        tv[j].setText(Html.fromHtml(" <b>" + data[j][i]+"</b> "));
+                    else
+                        tv[j].setText(" " + data[j][i] +" ");
+
+                    row.addView(tv[j]);
+                }
             }
-            tv4.setText(" "+part2);
-            tv5.setText(" "+data[data.length-1][i]);
-
-            row.addView(tv4);
-            row.addView(tv5);
             table.addView(row);
-			items.add(data[0][i] + "," + data[1][i] + "," + data[2][i] + ","+ data[3][i]+ ","+ data[4][i]+ ","+ data[5][i]+ ","+ data[6][i]
-            );
+			//items.add(data[0][i] + "," + data[1][i] + "," + data[2][i] + ","+ data[3][i]+ ","+ data[4][i]+ ","+ data[5][i]+ ","+ data[6][i]
+         //   );
 		}
 		//grid.setAdapter(new GridAdapter(items));
 

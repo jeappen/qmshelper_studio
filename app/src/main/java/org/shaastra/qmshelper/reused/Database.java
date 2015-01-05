@@ -2,6 +2,7 @@ package org.shaastra.qmshelper.reused;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import android.content.res.Resources;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -11,6 +12,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import org.shaastra.qmshelper.R;
 
 public class Database {
 	
@@ -23,10 +26,11 @@ public class Database {
 	private static final String DATABASE_NAME = "Registrations";
 	private static final String DATABASE_TABLE = "registerTable";
 	private static final int DATABASE_VERSION = 1;
-	
+    private static String savelocation ="";
 	private Data myData;
 	private final Context myContext;
 	private SQLiteDatabase myDatabase;
+
 	
 	private static class Data extends SQLiteOpenHelper{
 
@@ -37,6 +41,7 @@ public class Database {
 		
 		@Override
 		public void onCreate(SQLiteDatabase db) {
+
 			db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 					KEY_USERID + " TEXT NOT NULL, " +
 					KEY_EVENT + " TEXT NOT NULL, "+
@@ -58,6 +63,8 @@ public class Database {
 		}
 	}
 	public Database(Context c){
+        Resources res = c.getResources();
+        savelocation=""+res.getString(R.string.event_csv);
 		myContext = c;
 	}
 	public Database open(){
@@ -152,7 +159,7 @@ public class Database {
 	}
 	public void dbToCsv() throws IOException {
 		String[][] data = getData();
-		File file = new File("/sdcard/data.csv");
+		File file = new File(savelocation);
 		// if file doesnt exists, then create it
 		file.createNewFile();
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());

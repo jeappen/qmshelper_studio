@@ -6,7 +6,10 @@
 	<string name="spinner_title">no of tickets</string>
 	<string name="id_name">User ID</string>
 	<string name="id_prefix"></string>
-	<string name="id_default">(make new account to get)</string>
+    <string name="id_default">(make new account to get)</string>
+    <string name="feedback_csv">/sdcard/feedback_data.csv</string>
+    <string name="feedback_backup_csv">/sdcard/feedback_databackup.csv</string>
+    <string name="event_csv">/sdcard/eventregistration_data.csv</string>
     <string-array
         name="FeedbackCheckbox">
         <item>Checkbox1</item>
@@ -29,8 +32,8 @@
         <item>	Hospitality	</item>
         <item>	Sales and Distribution	</item>
         <item>	Prize and Prize money	</item>
-        <item>	Lecture Speakers	</item>
-        <item>	Sponsorship Lectures-participants	</item>
+        <item>	Lec. Speakers	</item>
+        <item>	Sponsorship Lec.-participants	</item>
         <item>	Sponsorship Company	</item>
         <item>	Catering - Facilities</item>
         <item>	General facilities	- Facilities</item>
@@ -38,8 +41,19 @@
         <item>	VIP care	- Facilities</item>
         <item>	Video Conference participant	</item>
         <item>	Exhibition	</item>
-        <item>	Lectures participant	</item>
-      <!--  <item>	Events 	</item> -->
+        <item>	Archana Sharma	Lecture	</item>
+        <item>	Arogyaswami Paulraj	Lecture	</item>
+        <item>	Ela Bhatt	Lecture	</item>
+        <item>	Gurtej Sandhu	Lecture	</item>
+        <item>	Partha Mitra	Lecture	</item>
+        <item>	Pawan Sinha	Lecture	</item>
+        <item>	Rajeeva Karandikar	Lecture	</item>
+        <item>	Ravi Venkatesan	Lecture	</item>
+        <item>	Sunil Kumar	Lecture	</item>
+        <item>	Vanitha Narayanan	Lecture	</item>
+        <item>	Vijay Govindarajan	Lecture	</item>
+        <item>	Vinita Bali	Lecture	</item>
+        <!--  <item>	Events 	</item> -->
         <item>	Shows	</item>
         <item>	Startup Hive Bucket 1	</item>
         <item>	Startup Hive Bucket 2	</item>
@@ -56,8 +70,8 @@
         <item>	Hospitality	</item>
         <item>	Sales and Distribution	</item>
         <item>	Prize and Prize money	</item>
-        <item>	Lecture Speakers	</item>
-        <item>	Sponsorship Lecture</item>
+        <item>	Speakers	</item>
+        <item>	Sponsorship Lec</item>
         <item>Sponsorship Company</item>
         <item>	Catering</item>
         <item>	General facilities</item>
@@ -65,9 +79,11 @@
         <item>	VIP care	</item>
         <item>	Video Conference participant	</item>
         <item>	Exhibition	</item>
-        <item>	Lectures participant	</item>
+        <item>	Lecture	</item>
         <item> Workshop</item>
         <item> Training</item>
+        <item> Simulation</item>
+        <item> Analysis</item>
         <item> Gaming Zone</item>
         <item> Entrepreneurship Confluence </item>
         <!--  <item>	Events 	</item> -->

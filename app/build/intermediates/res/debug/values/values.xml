@@ -7,8 +7,8 @@
         <item>	Hospitality	</item>
         <item>	Sales and Distribution	</item>
         <item>	Prize and Prize money	</item>
-        <item>	Lecture Speakers	</item>
-        <item>	Sponsorship Lectures-participants	</item>
+        <item>	Lec. Speakers	</item>
+        <item>	Sponsorship Lec.-participants	</item>
         <item>	Sponsorship Company	</item>
         <item>	Catering - Facilities</item>
         <item>	General facilities	- Facilities</item>
@@ -16,8 +16,19 @@
         <item>	VIP care	- Facilities</item>
         <item>	Video Conference participant	</item>
         <item>	Exhibition	</item>
-        <item>	Lectures participant	</item>
-      <!--  <item>	Events 	</item> -->
+        <item>	Archana Sharma	Lecture	</item>
+        <item>	Arogyaswami Paulraj	Lecture	</item>
+        <item>	Ela Bhatt	Lecture	</item>
+        <item>	Gurtej Sandhu	Lecture	</item>
+        <item>	Partha Mitra	Lecture	</item>
+        <item>	Pawan Sinha	Lecture	</item>
+        <item>	Rajeeva Karandikar	Lecture	</item>
+        <item>	Ravi Venkatesan	Lecture	</item>
+        <item>	Sunil Kumar	Lecture	</item>
+        <item>	Vanitha Narayanan	Lecture	</item>
+        <item>	Vijay Govindarajan	Lecture	</item>
+        <item>	Vinita Bali	Lecture	</item>
+        <!--  <item>	Events 	</item> -->
         <item>	Shows	</item>
         <item>	Startup Hive Bucket 1	</item>
         <item>	Startup Hive Bucket 2	</item>
@@ -42,8 +53,8 @@
         <item>	Hospitality	</item>
         <item>	Sales and Distribution	</item>
         <item>	Prize and Prize money	</item>
-        <item>	Lecture Speakers	</item>
-        <item>	Sponsorship Lecture</item>
+        <item>	Speakers	</item>
+        <item>	Sponsorship Lec</item>
         <item>Sponsorship Company</item>
         <item>	Catering</item>
         <item>	General facilities</item>
@@ -51,9 +62,11 @@
         <item>	VIP care	</item>
         <item>	Video Conference participant	</item>
         <item>	Exhibition	</item>
-        <item>	Lectures participant	</item>
+        <item>	Lecture	</item>
         <item> Workshop</item>
         <item> Training</item>
+        <item> Simulation</item>
+        <item> Analysis</item>
         <item> Gaming Zone</item>
         <item> Entrepreneurship Confluence </item>
         <!--  <item>	Events 	</item> -->
@@ -91,7 +104,7 @@
         <item>	Was the time to transition from one panel discussion to other sufficient? 	</item>
         <item>	How engaging were the filler events? (Psychometric tests, documentary )	</item>
         <item>	Rate your overall experience of the confluence	</item>
-        <item>	Sponsorship Lecture  FEEDBACK	</item>
+        <item>	Sponsorship Lec  FEEDBACK	</item>
         <item>	1. How was the general conduct and organization of the lecture?	</item>
         <item>	2. Did you have an overview of the sponsor’s activities?	</item>
         <item>	3. Rate the lecture under the following heads:	</item>
@@ -114,7 +127,7 @@
         <item>	 viii. Web-based Publicity: Facebook page, Blog	</item>
         <item>	 ix. Newspaper publications	</item>
         <item>	5. How satisfied were you with your association with Shaastra?	</item>
-        <item>	LECTURE SPEAKERS FEEDBACK FORM	</item>
+        <item>	LEC SPEAKERS FEEDBACK FORM	</item>
         <item>	Were you contacted well in advance	</item>
         <item>	Was the lecture attended by the right audience	</item>
         <item>	Audience response	</item>
@@ -154,7 +167,7 @@
         <item>	3. How clear information you had about your event?	</item>
         <item>	4. How was the timings of your food servings?	</item>
         <item>	5. Were you given enough attention before and after the event? 	</item>
-        <item>	Workshop or Training Participant FEEDBACK	</item>
+        <item>	Workshop or Training Participant Simulation Analysis FEEDBACK	</item>
         <item>	How informative and interactive was the workshop?	</item>
         <item>	Hands-on session	</item>
         <item>	Individual Attention given	</item>
@@ -404,7 +417,10 @@
     <!-- From: file:/C:/Users/joera_000/AndroidStudioProjects/QMSHelper/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">Shaastra QMS Assistant</string>
+    <string name="event_csv">/sdcard/eventregistration_data.csv</string>
     <string name="faq">"Tips:\n1.Default Password is same as email ID.\n2.Changing email ID and registering will create a new account with that email. All other details are editable.\n3.Tap \"Clear All Fields\" to enter a new email id for another account."</string>
+    <string name="feedback_backup_csv">/sdcard/feedback_databackup.csv</string>
+    <string name="feedback_csv">/sdcard/feedback_data.csv</string>
     <string name="id_default">(make new account to get)</string>
     <string name="id_name">User ID</string>
     <string name="id_prefix"/>

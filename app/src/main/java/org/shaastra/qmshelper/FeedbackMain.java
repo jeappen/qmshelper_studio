@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -62,6 +63,8 @@ public class FeedbackMain extends ListActivity {
 	JSONParser jsonParser=new JSONParser();
 	Singleton app;
 
+    String savelocation,backupsavelocation;
+
     String[] extra_depts;
 	
 	@Override
@@ -70,13 +73,17 @@ public class FeedbackMain extends ListActivity {
 		app = (Singleton) getApplicationContext();
 		user = getIntent().getStringExtra("user");
 		pass = getIntent().getStringExtra("pass");
-        extra_depts=getResources().getStringArray(R.array.ExtraDept);
-		Log.i("chooseUser", user);
+        Resources res=getResources();
+        extra_depts=res.getStringArray(R.array.ExtraDept);
+        savelocation=res.getString(R.string.feedback_csv);
+        backupsavelocation=res.getString(R.string.feedback_backup_csv);
+
+        Log.i("chooseUser", user);
 		Log.i("choosePass", pass);
 
 		String[] choices = { "Get Feedback", //"Get list from server",
 				"Refresh Event List", "Show Feedback data", "Export to csv and send"//,"Send exported csv"
-				,"Delete Feedback Data database"};
+				,"Delete Feedback database"};
 		setListAdapter(new ArrayAdapter<String>(FeedbackMain.this,
 				android.R.layout.simple_list_item_1, choices));
 		setContentView(R.layout.choose_re);
@@ -156,7 +163,7 @@ public class FeedbackMain extends ListActivity {
 				case 5:
 					info.open();
 					try {
-						info.dbToCsv();
+						info.dbToCsv(false);
 						sendcsv();
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -164,7 +171,45 @@ public class FeedbackMain extends ListActivity {
 					info.close();
 					break;
 				case 6:
-					info.delete();
+
+                    TextView msg = new TextView(this);
+                    msg.setText(Html.fromHtml("Are you sure you want to delete the existing feedback database?"));
+                    msg.setTextSize(16);
+                    msg.setTextColor(Color.GRAY);
+                    msg.setMovementMethod(LinkMovementMethod.getInstance());
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                    builder1.setView(msg);
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton("OK.",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    info.open();
+                                    try {
+                                        info.dbToCsv(true);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            "Backup made at "+backupsavelocation, Toast.LENGTH_LONG).show();
+                                    info.delete();
+                                    info.close();
+                                    dialog.cancel();
+                                }
+                            });
+                    builder1.setNegativeButton("No!",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
+
 					
 				}
 			/*}
@@ -173,7 +218,7 @@ public class FeedbackMain extends ListActivity {
 	}
 	public void sendcsv(){
 		
-		File file = new File("/sdcard/data.csv");
+		File file = new File(savelocation);
 		if(file.exists() && file.length()>24){
 		String filelocation = "/mnt/sdcard/data.csv";
 		Intent sharingIntent = new Intent(Intent.ACTION_SEND);
@@ -186,6 +231,9 @@ public class FeedbackMain extends ListActivity {
 		sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Data from barcode scanner app");
 		startActivity(Intent.createChooser(
 				sharingIntent, "Send email"));
+            info.open();
+            info.makeSent();
+            info.close();
 		}
 		else
 			Toast.makeText(getApplicationContext(), "ERR: No Data to send", Toast.LENGTH_SHORT).show();
