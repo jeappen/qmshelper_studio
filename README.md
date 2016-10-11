@@ -1,29 +1,8 @@
-# README #
+### What is this repo for? ###
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is the Android Studio version of the Quality Managment Services (QMS) Helper Android application used during Shaastra 2015, the techno and cultural fests of IIT Madras. This was developed during my second year.
 
-### What is this repository for? ###
+###To Use
+Import the file to Android Studio and build the app
 
-This is the repo for the Android Studio version of the QMS helper app.
-
-phew.
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+[Here is the compiled APK](https://drive.google.com/open?id=0B_2Tp4DWH-UbNzhKU21xTFF2TFdXWldwUUZUa0RuYTBFbU5n).
